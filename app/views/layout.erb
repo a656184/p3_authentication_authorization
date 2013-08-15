@@ -26,6 +26,10 @@
 
   </nav>
 
+  <% @errors.each do |error| %>
+    <p style='color: red'><%= error %></p>
+  <% end %>
+
   <%= yield %>
 </body>
 </html>

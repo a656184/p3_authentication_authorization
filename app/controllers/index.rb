@@ -1,3 +1,7 @@
+before do
+  @errors = session.delete(:errors) || []
+end
+
 get '/' do
   # render home page
  #TODO: Show all users if user is signed in
@@ -16,8 +20,12 @@ end
 
 post '/sessions' do
   user = User.find_by_email(params[:email])
-  log_in(user, params[:password])
-  redirect '/'
+  if log_in(user, params[:password])
+    redirect '/'
+  else
+    session[:errors] = ['Invalid login']
+    redirect to '/sessions/new'
+  end
 end
 
 delete '/sessions/:id' do

@@ -6,10 +6,11 @@ helpers do
   end
 
   def log_in(user, password)
-    if User.authenticate(user.email, password)
+    if user && User.authenticate(user.email, password)
       session[:user_id] = user.id
+      return true
     else
-      nil
+      return false
     end
   end
 
