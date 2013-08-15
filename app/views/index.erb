@@ -1,8 +1,14 @@
 <div class="container">
-
+  <% if @users %>
+    <h3>Here is the list of users:</h3>
+    <% @users.each_with_index do |user, index| %>
+    <p><%= index + 1 %>. <%= user.name.downcase.capitalize %></p>
+    <% end %>
+  <% else %>
+    <h1>Welcome to Portfolio Challenege 3</h1>
+  <% end %>
   <%# TODO: 
   1. If user is not signed in - display "Welcome".
   2. If user is signed in then  display all users %>
-  <%= @users.try(:inspect) %>
 
 </div>
